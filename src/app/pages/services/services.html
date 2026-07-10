@@ -1,0 +1,50 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Our services</span>
+    <h1>Six practices. One accountable partner.</h1>
+    <p>
+      Every engagement is backed by SLAs, senior engineers and reporting you can
+      read without a translator. Start with one service or hand us the whole stack.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container services-list">
+    @for (service of services; track service.slug; let i = $index) {
+      <article class="service" [id]="service.slug" [class.service--flip]="i % 2 === 1">
+        <div class="service__info">
+          <span class="icon-badge">
+            <svg aria-hidden="true"><use [attr.href]="'#i-' + service.icon" /></svg>
+          </span>
+          <h2>{{ service.title }}</h2>
+          <p>{{ service.summary }}</p>
+          <a routerLink="/contact" class="btn btn--outline">
+            Discuss this service
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          </a>
+        </div>
+
+        <ul class="service__features card">
+          @for (feature of service.features; track feature) {
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+              <span>{{ feature }}</span>
+            </li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container services-cta">
+    <h2>Not sure where to start?</h2>
+    <p>
+      Book a free 30-minute assessment. We'll map your environment, flag the risks
+      and tell you honestly what you do — and don't — need.
+    </p>
+    <a routerLink="/contact" class="btn btn--primary btn--lg">Book a free assessment</a>
+  </div>
+</section>

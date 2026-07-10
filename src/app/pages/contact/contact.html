@@ -1,0 +1,166 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Contact us</span>
+    <h1>Let's talk about your IT</h1>
+    <p>
+      Tell us where it hurts — slow support, cloud costs, security worries or a
+      project that needs building. An engineer (not a salesperson) will reply
+      within one business day.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <!-- Form -->
+    <div class="card contact-form">
+      @if (sent()) {
+        <div class="contact-form__success" role="status">
+          <span class="icon-badge">
+            <svg aria-hidden="true"><use href="#i-check" /></svg>
+          </span>
+          <h2>Message received!</h2>
+          <p>
+            Thanks for reaching out — we'll get back to you within one business
+            day. For urgent issues, call us at {{ contact.phone }}.
+          </p>
+          <button type="button" class="btn btn--outline" (click)="reset()">
+            Send another message
+          </button>
+        </div>
+      } @else {
+        <h2>Send us a message</h2>
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Full name *</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                autocomplete="name"
+                [class.field__input--error]="invalid('name')"
+              />
+              @if (invalid('name')) {
+                <span class="field__error">Please enter your name.</span>
+              }
+            </div>
+            <div class="field">
+              <label for="email">Work email *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+                [class.field__input--error]="invalid('email')"
+              />
+              @if (invalid('email')) {
+                <span class="field__error">Please enter a valid email address.</span>
+              }
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" type="text" formControlName="company" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="service">What do you need help with?</label>
+              <select id="service" formControlName="service">
+                <option value="">Select a service (optional)</option>
+                @for (service of services; track service.slug) {
+                  <option [value]="service.slug">{{ service.title }}</option>
+                }
+                <option value="other">Something else</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Your message *</label>
+            <textarea
+              id="message"
+              rows="5"
+              formControlName="message"
+              placeholder="Tell us a little about your environment and what you'd like to improve…"
+              [class.field__input--error]="invalid('message')"
+            ></textarea>
+            @if (invalid('message')) {
+              <span class="field__error">Please tell us a bit more (at least 20 characters).</span>
+            }
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
+            Send message
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+          </button>
+        </form>
+      }
+    </div>
+
+    <!-- Info -->
+    <aside class="contact-info">
+      <div class="card contact-info__item">
+        <svg class="icon" aria-hidden="true"><use href="#i-map-pin" /></svg>
+        <div>
+          <h3>Visit us</h3>
+          <p>{{ contact.address }}</p>
+        </div>
+      </div>
+      <div class="card contact-info__item">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
+        <div>
+          <h3>Call us</h3>
+          <p><a href="tel:+15125550184">{{ contact.phone }}</a></p>
+        </div>
+      </div>
+      <div class="card contact-info__item">
+        <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+        <div>
+          <h3>Email us</h3>
+          <p><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+        </div>
+      </div>
+      <div class="card contact-info__item">
+        <svg class="icon" aria-hidden="true"><use href="#i-clock" /></svg>
+        <div>
+          <h3>Hours</h3>
+          <p>{{ contact.hours }}</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt">
+  <div class="container faq">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title">Questions we hear a lot</h2>
+    </div>
+
+    <div class="faq__list">
+      @for (faq of faqs; track faq.question; let i = $index) {
+        <div class="faq__item" [class.faq__item--open]="openFaq() === i">
+          <h3>
+            <button
+              type="button"
+              class="faq__question"
+              (click)="toggleFaq(i)"
+              [attr.aria-expanded]="openFaq() === i"
+              [attr.aria-controls]="'faq-answer-' + i"
+            >
+              {{ faq.question }}
+              <svg class="icon faq__chevron" aria-hidden="true"><use href="#i-chevron-down" /></svg>
+            </button>
+          </h3>
+          @if (openFaq() === i) {
+            <p class="faq__answer" [id]="'faq-answer-' + i">{{ faq.answer }}</p>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

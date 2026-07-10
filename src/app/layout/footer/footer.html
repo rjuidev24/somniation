@@ -1,0 +1,66 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a routerLink="/" class="footer__logo">Somniation</a>
+        <p class="footer__blurb">
+          Your full-service IT partner. We keep businesses running, secure and
+          ready for what's next — from helpdesk to cloud to custom software.
+        </p>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="Somniation on LinkedIn">
+            <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+          </a>
+          <a href="https://www.x.com" target="_blank" rel="noopener" aria-label="Somniation on X">
+            <svg class="icon" aria-hidden="true"><use href="#i-twitter" /></svg>
+          </a>
+          <a href="https://www.github.com" target="_blank" rel="noopener" aria-label="Somniation on GitHub">
+            <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer__col" aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/about">About us</a></li>
+          <li><a routerLink="/services">Services</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-label="Services">
+        <h3>Services</h3>
+        <ul>
+          @for (service of services; track service.slug) {
+            <li><a routerLink="/services" [fragment]="service.slug">{{ service.title }}</a></li>
+          }
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-map-pin" /></svg>
+            <span>{{ contact.address }}</span>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
+            <a href="tel:+15125550184">{{ contact.phone }}</a>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {{ year }} Somniation LLC. All rights reserved.</p>
+      <p class="footer__tagline">Dream it. Run it.</p>
+    </div>
+  </div>
+</footer>
