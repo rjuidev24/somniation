@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">Our services</span>
-    <h1>Six practices. One accountable partner.</h1>
-    <p>
+    <h1 class="max-w-[24ch] text-[clamp(2rem,5vw,3rem)]">Six practices. One accountable partner.</h1>
+    <p class="mb-0 max-w-[58ch] text-[1.1rem] text-foreground-2">
       Every engagement is backed by SLAs, senior engineers and reporting you can
       read without a translator. Start with one service or hand us the whole stack.
     </p>
@@ -10,25 +10,28 @@
 </section>
 
 <section class="section">
-  <div class="container services-list">
+  <div class="container grid gap-[clamp(3rem,7vw,4.5rem)]">
     @for (service of services; track service.slug; let i = $index) {
-      <article class="service" [id]="service.slug" [class.service--flip]="i % 2 === 1">
-        <div class="service__info">
+      <article
+        class="grid scroll-mt-[calc(var(--header-h)+1.5rem)] items-center gap-[clamp(1.75rem,4vw,3rem)] md:grid-cols-[1.1fr_0.9fr]"
+        [id]="service.slug"
+      >
+        <div [class]="i % 2 === 1 ? 'md:order-2' : ''">
           <span class="icon-badge">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + service.icon" /></svg>
           </span>
-          <h2>{{ service.title }}</h2>
-          <p>{{ service.summary }}</p>
-          <a routerLink="/contact" class="btn btn--outline">
+          <h2 class="text-[clamp(1.4rem,3vw,1.8rem)]">{{ service.title }}</h2>
+          <p class="mb-6 max-w-[52ch] text-foreground-2">{{ service.summary }}</p>
+          <a routerLink="/contact" class="btn btn-outline">
             Discuss this service
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
           </a>
         </div>
 
-        <ul class="service__features card">
+        <ul class="card grid gap-[0.9rem]">
           @for (feature of service.features; track feature) {
-            <li>
-              <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+            <li class="flex items-start gap-[0.7rem] font-medium">
+              <svg class="icon mt-[0.2rem] size-[19px] text-accent" aria-hidden="true"><use href="#i-check" /></svg>
               <span>{{ feature }}</span>
             </li>
           }
@@ -38,13 +41,13 @@
   </div>
 </section>
 
-<section class="section section--alt">
-  <div class="container services-cta">
-    <h2>Not sure where to start?</h2>
-    <p>
+<section class="section section-alt">
+  <div class="container text-center">
+    <h2 class="text-[clamp(1.5rem,3.5vw,2rem)]">Not sure where to start?</h2>
+    <p class="mx-auto mb-7 max-w-[56ch] text-foreground-2">
       Book a free 30-minute assessment. We'll map your environment, flag the risks
       and tell you honestly what you do — and don't — need.
     </p>
-    <a routerLink="/contact" class="btn btn--primary btn--lg">Book a free assessment</a>
+    <a routerLink="/contact" class="btn btn-primary btn-lg">Book a free assessment</a>
   </div>
 </section>

@@ -6,7 +6,6 @@ import { CONTACT_INFO, SERVICES } from '../../core/data';
   selector: 'app-footer',
   imports: [RouterLink],
   templateUrl: './footer.html',
-  styleUrl: './footer.scss',
 })
 export class Footer {
   protected readonly services = SERVICES;

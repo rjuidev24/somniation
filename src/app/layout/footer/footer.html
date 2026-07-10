@@ -1,66 +1,86 @@
-<footer class="footer">
+<footer class="border-t border-border bg-surface-2 pt-14 pb-6 text-[0.95rem] text-foreground-2">
   <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <a routerLink="/" class="footer__logo">Somniation</a>
-        <p class="footer__blurb">
+    <div class="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[2fr_1fr_1.4fr_1.6fr]">
+      <div>
+        <a routerLink="/" class="text-[1.25rem] font-extrabold tracking-tight text-foreground hover:text-primary">Somniation</a>
+        <p class="mt-[0.85rem] mb-0 max-w-[34ch]">
           Your full-service IT partner. We keep businesses running, secure and
           ready for what's next — from helpdesk to cloud to custom software.
         </p>
-        <div class="footer__social">
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="Somniation on LinkedIn">
+        <div class="mt-4 flex gap-[0.6rem]">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Somniation on LinkedIn"
+            class="inline-flex size-[38px] items-center justify-center rounded-full border border-border text-foreground-2 transition-colors hover:border-primary hover:text-primary"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
           </a>
-          <a href="https://www.x.com" target="_blank" rel="noopener" aria-label="Somniation on X">
+          <a
+            href="https://www.x.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Somniation on X"
+            class="inline-flex size-[38px] items-center justify-center rounded-full border border-border text-foreground-2 transition-colors hover:border-primary hover:text-primary"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-twitter" /></svg>
           </a>
-          <a href="https://www.github.com" target="_blank" rel="noopener" aria-label="Somniation on GitHub">
+          <a
+            href="https://www.github.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Somniation on GitHub"
+            class="inline-flex size-[38px] items-center justify-center rounded-full border border-border text-foreground-2 transition-colors hover:border-primary hover:text-primary"
+          >
             <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
           </a>
         </div>
       </div>
 
-      <nav class="footer__col" aria-label="Company">
-        <h3>Company</h3>
-        <ul>
-          <li><a routerLink="/">Home</a></li>
-          <li><a routerLink="/about">About us</a></li>
-          <li><a routerLink="/services">Services</a></li>
-          <li><a routerLink="/contact">Contact</a></li>
+      <nav aria-label="Company">
+        <h3 class="mb-4 text-[0.85rem] tracking-[0.1em] text-foreground uppercase">Company</h3>
+        <ul class="grid gap-[0.55rem]">
+          <li><a routerLink="/" class="text-foreground-2 hover:text-primary">Home</a></li>
+          <li><a routerLink="/about" class="text-foreground-2 hover:text-primary">About us</a></li>
+          <li><a routerLink="/services" class="text-foreground-2 hover:text-primary">Services</a></li>
+          <li><a routerLink="/contact" class="text-foreground-2 hover:text-primary">Contact</a></li>
         </ul>
       </nav>
 
-      <nav class="footer__col" aria-label="Services">
-        <h3>Services</h3>
-        <ul>
+      <nav aria-label="Services">
+        <h3 class="mb-4 text-[0.85rem] tracking-[0.1em] text-foreground uppercase">Services</h3>
+        <ul class="grid gap-[0.55rem]">
           @for (service of services; track service.slug) {
-            <li><a routerLink="/services" [fragment]="service.slug">{{ service.title }}</a></li>
+            <li>
+              <a routerLink="/services" [fragment]="service.slug" class="text-foreground-2 hover:text-primary">{{ service.title }}</a>
+            </li>
           }
         </ul>
       </nav>
 
-      <div class="footer__col">
-        <h3>Get in touch</h3>
-        <ul class="footer__contact">
-          <li>
-            <svg class="icon" aria-hidden="true"><use href="#i-map-pin" /></svg>
+      <div>
+        <h3 class="mb-4 text-[0.85rem] tracking-[0.1em] text-foreground uppercase">Get in touch</h3>
+        <ul class="grid gap-[0.55rem]">
+          <li class="flex items-start gap-[0.6rem]">
+            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
             <span>{{ contact.address }}</span>
           </li>
-          <li>
-            <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
-            <a href="tel:+15125550184">{{ contact.phone }}</a>
+          <li class="flex items-start gap-[0.6rem]">
+            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
+            <a href="tel:+15125550184" class="text-foreground-2 hover:text-primary">{{ contact.phone }}</a>
           </li>
-          <li>
-            <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
-            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+          <li class="flex items-start gap-[0.6rem]">
+            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
+            <a href="mailto:{{ contact.email }}" class="text-foreground-2 hover:text-primary">{{ contact.email }}</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__bottom">
-      <p>© {{ year }} Somniation LLC. All rights reserved.</p>
-      <p class="footer__tagline">Dream it. Run it.</p>
+    <div class="mt-12 flex flex-wrap justify-between gap-2 border-t border-border pt-6">
+      <p class="m-0">© {{ year }} Somniation LLC. All rights reserved.</p>
+      <p class="m-0 italic">Dream it. Run it.</p>
     </div>
   </div>
 </footer>

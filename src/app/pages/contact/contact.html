@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">Contact us</span>
-    <h1>Let's talk about your IT</h1>
-    <p>
+    <h1 class="text-[clamp(2rem,5vw,3rem)]">Let's talk about your IT</h1>
+    <p class="mb-0 max-w-[60ch] text-[1.1rem] text-foreground-2">
       Tell us where it hurts — slow support, cloud costs, security worries or a
       project that needs building. An engineer (not a salesperson) will reply
       within one business day.
@@ -11,63 +11,65 @@
 </section>
 
 <section class="section">
-  <div class="container contact-grid">
+  <div class="container grid items-start gap-8 lg:grid-cols-[1.5fr_1fr]">
     <!-- Form -->
-    <div class="card contact-form">
+    <div class="card p-[clamp(1.5rem,4vw,2.5rem)]">
       @if (sent()) {
-        <div class="contact-form__success" role="status">
+        <div class="py-6 text-center" role="status">
           <span class="icon-badge">
             <svg aria-hidden="true"><use href="#i-check" /></svg>
           </span>
-          <h2>Message received!</h2>
-          <p>
+          <h2 class="mb-2 text-[1.4rem]">Message received!</h2>
+          <p class="mx-auto mb-6 max-w-[44ch] text-foreground-2">
             Thanks for reaching out — we'll get back to you within one business
             day. For urgent issues, call us at {{ contact.phone }}.
           </p>
-          <button type="button" class="btn btn--outline" (click)="reset()">
+          <button type="button" class="btn btn-outline" (click)="reset()">
             Send another message
           </button>
         </div>
       } @else {
-        <h2>Send us a message</h2>
+        <h2 class="mb-6 text-[1.4rem]">Send us a message</h2>
         <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          <div class="field-row">
-            <div class="field">
-              <label for="name">Full name *</label>
+          <div class="grid sm:grid-cols-2 sm:gap-x-5">
+            <div class="mb-5 grid gap-[0.35rem]">
+              <label for="name" class="text-[0.92rem] font-semibold">Full name *</label>
               <input
                 id="name"
                 type="text"
                 formControlName="name"
                 autocomplete="name"
-                [class.field__input--error]="invalid('name')"
+                class="form-input"
+                [class]="invalid('name') ? 'border-red-600!' : ''"
               />
               @if (invalid('name')) {
-                <span class="field__error">Please enter your name.</span>
+                <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please enter your name.</span>
               }
             </div>
-            <div class="field">
-              <label for="email">Work email *</label>
+            <div class="mb-5 grid gap-[0.35rem]">
+              <label for="email" class="text-[0.92rem] font-semibold">Work email *</label>
               <input
                 id="email"
                 type="email"
                 formControlName="email"
                 autocomplete="email"
-                [class.field__input--error]="invalid('email')"
+                class="form-input"
+                [class]="invalid('email') ? 'border-red-600!' : ''"
               />
               @if (invalid('email')) {
-                <span class="field__error">Please enter a valid email address.</span>
+                <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please enter a valid email address.</span>
               }
             </div>
           </div>
 
-          <div class="field-row">
-            <div class="field">
-              <label for="company">Company</label>
-              <input id="company" type="text" formControlName="company" autocomplete="organization" />
+          <div class="grid sm:grid-cols-2 sm:gap-x-5">
+            <div class="mb-5 grid gap-[0.35rem]">
+              <label for="company" class="text-[0.92rem] font-semibold">Company</label>
+              <input id="company" type="text" formControlName="company" autocomplete="organization" class="form-input" />
             </div>
-            <div class="field">
-              <label for="service">What do you need help with?</label>
-              <select id="service" formControlName="service">
+            <div class="mb-5 grid gap-[0.35rem]">
+              <label for="service" class="text-[0.92rem] font-semibold">What do you need help with?</label>
+              <select id="service" formControlName="service" class="form-input">
                 <option value="">Select a service (optional)</option>
                 @for (service of services; track service.slug) {
                   <option [value]="service.slug">{{ service.title }}</option>
@@ -77,21 +79,22 @@
             </div>
           </div>
 
-          <div class="field">
-            <label for="message">Your message *</label>
+          <div class="mb-5 grid gap-[0.35rem]">
+            <label for="message" class="text-[0.92rem] font-semibold">Your message *</label>
             <textarea
               id="message"
               rows="5"
               formControlName="message"
               placeholder="Tell us a little about your environment and what you'd like to improve…"
-              [class.field__input--error]="invalid('message')"
+              class="form-input min-h-[120px] resize-y"
+              [class]="invalid('message') ? 'border-red-600!' : ''"
             ></textarea>
             @if (invalid('message')) {
-              <span class="field__error">Please tell us a bit more (at least 20 characters).</span>
+              <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please tell us a bit more (at least 20 characters).</span>
             }
           </div>
 
-          <button type="submit" class="btn btn--primary btn--lg contact-form__submit">
+          <button type="submit" class="btn btn-primary btn-lg mt-1 w-full">
             Send message
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
           </button>
@@ -100,33 +103,33 @@
     </div>
 
     <!-- Info -->
-    <aside class="contact-info">
-      <div class="card contact-info__item">
-        <svg class="icon" aria-hidden="true"><use href="#i-map-pin" /></svg>
+    <aside class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+      <div class="card flex gap-4 p-[1.4rem]">
+        <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
         <div>
-          <h3>Visit us</h3>
-          <p>{{ contact.address }}</p>
+          <h3 class="mb-[0.2rem] text-base">Visit us</h3>
+          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact.address }}</p>
         </div>
       </div>
-      <div class="card contact-info__item">
-        <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
+      <div class="card flex gap-4 p-[1.4rem]">
+        <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
         <div>
-          <h3>Call us</h3>
-          <p><a href="tel:+15125550184">{{ contact.phone }}</a></p>
+          <h3 class="mb-[0.2rem] text-base">Call us</h3>
+          <p class="m-0 text-[0.95rem] text-foreground-2"><a href="tel:+15125550184">{{ contact.phone }}</a></p>
         </div>
       </div>
-      <div class="card contact-info__item">
-        <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+      <div class="card flex gap-4 p-[1.4rem]">
+        <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
         <div>
-          <h3>Email us</h3>
-          <p><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+          <h3 class="mb-[0.2rem] text-base">Email us</h3>
+          <p class="m-0 text-[0.95rem] text-foreground-2"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
         </div>
       </div>
-      <div class="card contact-info__item">
-        <svg class="icon" aria-hidden="true"><use href="#i-clock" /></svg>
+      <div class="card flex gap-4 p-[1.4rem]">
+        <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-clock" /></svg>
         <div>
-          <h3>Hours</h3>
-          <p>{{ contact.hours }}</p>
+          <h3 class="mb-[0.2rem] text-base">Hours</h3>
+          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact.hours }}</p>
         </div>
       </div>
     </aside>
@@ -134,30 +137,34 @@
 </section>
 
 <!-- FAQ -->
-<section class="section section--alt">
-  <div class="container faq">
-    <div class="section-head section-head--center">
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head section-head-center">
       <span class="eyebrow">FAQ</span>
       <h2 class="section-title">Questions we hear a lot</h2>
     </div>
 
-    <div class="faq__list">
+    <div class="mx-auto grid max-w-[760px] gap-[0.85rem]">
       @for (faq of faqs; track faq.question; let i = $index) {
-        <div class="faq__item" [class.faq__item--open]="openFaq() === i">
-          <h3>
+        <div class="overflow-hidden rounded-md border border-border bg-surface">
+          <h3 class="m-0 text-base">
             <button
               type="button"
-              class="faq__question"
+              class="flex w-full items-center justify-between gap-4 bg-transparent px-5 py-[1.05rem] text-left font-semibold text-foreground hover:text-primary"
               (click)="toggleFaq(i)"
               [attr.aria-expanded]="openFaq() === i"
               [attr.aria-controls]="'faq-answer-' + i"
             >
               {{ faq.question }}
-              <svg class="icon faq__chevron" aria-hidden="true"><use href="#i-chevron-down" /></svg>
+              <svg
+                class="icon size-[18px] transition-transform"
+                [class]="openFaq() === i ? 'rotate-180' : ''"
+                aria-hidden="true"
+              ><use href="#i-chevron-down" /></svg>
             </button>
           </h3>
           @if (openFaq() === i) {
-            <p class="faq__answer" [id]="'faq-answer-' + i">{{ faq.answer }}</p>
+            <p class="m-0 px-5 pb-[1.15rem] text-[0.97rem] text-foreground-2" [id]="'faq-answer-' + i">{{ faq.answer }}</p>
           }
         </div>
       }

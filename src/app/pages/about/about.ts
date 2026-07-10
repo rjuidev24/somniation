@@ -6,7 +6,6 @@ import { MILESTONES, TEAM, VALUES } from '../../core/data';
   selector: 'app-about',
   imports: [RouterLink],
   templateUrl: './about.html',
-  styleUrl: './about.scss',
 })
 export class About {
   protected readonly values = VALUES;

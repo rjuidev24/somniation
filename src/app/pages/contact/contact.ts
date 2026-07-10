@@ -10,7 +10,6 @@ import { CONTACT_INFO, FAQS, SERVICES } from '../../core/data';
   selector: 'app-contact',
   imports: [ReactiveFormsModule],
   templateUrl: './contact.html',
-  styleUrl: './contact.scss',
 })
 export class Contact {
   private readonly fb = inject(FormBuilder);

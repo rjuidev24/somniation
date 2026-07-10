@@ -6,7 +6,6 @@ import { SERVICES } from '../../core/data';
   selector: 'app-services',
   imports: [RouterLink],
   templateUrl: './services.html',
-  styleUrl: './services.scss',
 })
 export class Services {
   protected readonly services = SERVICES;

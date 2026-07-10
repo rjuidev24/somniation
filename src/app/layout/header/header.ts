@@ -6,7 +6,6 @@ import { ThemeService } from '../../core/theme.service';
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
-  styleUrl: './header.scss',
 })
 export class Header {
   protected readonly theme = inject(ThemeService);

@@ -1,7 +1,12 @@
-<header class="header">
-  <div class="container header__inner">
-    <a routerLink="/" class="brand" (click)="closeMenu()" aria-label="Somniation home">
-      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+<header class="sticky top-0 z-[100] h-(--header-h) border-b border-border bg-surface/80 backdrop-blur-md">
+  <div class="container flex h-full items-center gap-6">
+    <a
+      routerLink="/"
+      class="inline-flex items-center gap-[0.6rem] text-[1.18rem] font-extrabold tracking-tight text-foreground hover:text-foreground"
+      (click)="closeMenu()"
+      aria-label="Somniation home"
+    >
+      <svg class="size-[30px]" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="brand-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
             <stop stop-color="#6366f1" />
@@ -15,32 +20,36 @@
         />
         <circle cx="23" cy="8" r="2.4" fill="url(#brand-grad)" />
       </svg>
-      <span class="brand__name">Somniation</span>
+      <span>Somniation</span>
     </a>
 
-    <nav class="nav" [class.nav--open]="menuOpen()" aria-label="Main navigation">
-      <ul class="nav__list">
+    <nav
+      class="ml-auto flex items-center gap-5 max-nav:invisible max-nav:fixed max-nav:inset-x-0 max-nav:top-(--header-h) max-nav:-translate-y-2 max-nav:flex-col max-nav:items-stretch max-nav:gap-2 max-nav:border-b max-nav:border-border max-nav:bg-surface max-nav:p-5 max-nav:opacity-0 max-nav:shadow-lg max-nav:transition-all max-nav:duration-200 max-nav:data-open:visible max-nav:data-open:translate-y-0 max-nav:data-open:opacity-100"
+      [attr.data-open]="menuOpen() ? '' : null"
+      aria-label="Main navigation"
+    >
+      <ul class="flex items-center gap-[0.35rem] max-nav:flex-col max-nav:items-stretch max-nav:gap-1">
         @for (link of links; track link.path) {
           <li>
             <a
               [routerLink]="link.path"
-              routerLinkActive="nav__link--active"
+              routerLinkActive="bg-primary-soft! text-primary!"
               [routerLinkActiveOptions]="{ exact: link.exact }"
-              class="nav__link"
+              class="inline-block rounded-full px-[0.9rem] py-[0.45rem] font-medium text-foreground-2 transition-colors hover:bg-surface-2 hover:text-foreground max-nav:block max-nav:px-4 max-nav:py-[0.7rem] max-nav:text-[1.05rem]"
               (click)="closeMenu()"
             >{{ link.label }}</a>
           </li>
         }
       </ul>
-      <a routerLink="/contact" class="btn btn--primary nav__cta" (click)="closeMenu()">
+      <a routerLink="/contact" class="btn btn-primary max-nav:mt-2" (click)="closeMenu()">
         Get a consultation
       </a>
     </nav>
 
-    <div class="header__actions">
+    <div class="flex items-center gap-[0.4rem]">
       <button
         type="button"
-        class="icon-btn"
+        class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-2 transition-colors hover:border-primary hover:text-primary"
         (click)="theme.toggle()"
         [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
       >
@@ -53,7 +62,7 @@
 
       <button
         type="button"
-        class="icon-btn header__burger"
+        class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-2 transition-colors hover:border-primary hover:text-primary nav:hidden"
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="mobile-nav"

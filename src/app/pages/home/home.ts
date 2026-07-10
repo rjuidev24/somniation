@@ -13,7 +13,6 @@ import {
   selector: 'app-home',
   imports: [RouterLink, CountUpDirective],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
 })
 export class Home {
   protected readonly services = SERVICES;
