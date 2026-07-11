@@ -1,8 +1,12 @@
-<section class="page-hero">
+<section class="relative isolate overflow-hidden py-[clamp(3.5rem,8vw,6rem)] text-white">
+  <div class="media-hero-layer" aria-hidden="true">
+    <img src="/images/office.webp" alt="" parallax [parallaxSpeed]="0.18" fetchpriority="high" />
+    <div class="absolute inset-0 bg-[linear-gradient(100deg,rgb(5_8_22/0.92)_25%,rgb(5_8_22/0.72)_60%,rgb(5_8_22/0.45))]"></div>
+  </div>
   <div class="container">
-    <span class="eyebrow">About Somniation</span>
-    <h1 class="max-w-[26ch] text-[clamp(2rem,5vw,3rem)]">We turn ambitious ideas into running systems</h1>
-    <p class="mb-0 max-w-[62ch] text-[1.1rem] text-foreground-2">
+    <span class="eyebrow eyebrow-on-media animate-fade-up">About Somniation</span>
+    <h1 class="animate-fade-up max-w-[26ch] text-[clamp(2rem,5vw,3rem)] [animation-delay:100ms]">We turn ambitious ideas into running systems</h1>
+    <p class="animate-fade-up mb-0 max-w-[62ch] text-[1.1rem] text-indigo-100/85 [animation-delay:200ms]">
       Our name comes from <em>somnium</em> — Latin for dream. Since 2014 we've
       been the IT partner for companies that dream bigger than their current
       infrastructure allows, pairing enterprise-grade engineering with service
@@ -12,36 +16,49 @@
 </section>
 
 <section class="section">
-  <div class="container grid items-center gap-[clamp(2rem,5vw,3.5rem)] md:grid-cols-[1.1fr_0.9fr]">
-    <div>
-      <h2 class="text-[clamp(1.5rem,3.5vw,2rem)]">Our mission</h2>
-      <p class="text-foreground-2">
-        Most businesses don't need more technology — they need technology that
-        works. Our mission is to make world-class IT accessible to companies
-        that aren't (yet) enterprises: monitored around the clock, secured by
-        default and planned with a roadmap instead of a sales quota.
-      </p>
-      <p class="text-foreground-2">
-        Today 60+ specialists support clients across three continents. We're
-        still independent, still engineer-led and still measured on one thing:
-        whether your team's day got easier.
-      </p>
-      <a routerLink="/contact" class="btn btn-primary mt-2">Work with us</a>
+  <div class="container">
+    <div class="grid items-center gap-[clamp(2rem,5vw,3.5rem)] md:grid-cols-[1.05fr_0.95fr]">
+      <div reveal>
+        <h2 class="text-[clamp(1.5rem,3.5vw,2rem)]">Our mission</h2>
+        <p class="text-foreground-2">
+          Most businesses don't need more technology — they need technology that
+          works. Our mission is to make world-class IT accessible to companies
+          that aren't (yet) enterprises: monitored around the clock, secured by
+          default and planned with a roadmap instead of a sales quota.
+        </p>
+        <p class="text-foreground-2">
+          Today 60+ specialists support clients across three continents. We're
+          still independent, still engineer-led and still measured on one thing:
+          whether your team's day got easier.
+        </p>
+        <a routerLink="/contact" class="btn btn-primary mt-2">Work with us</a>
+      </div>
+
+      <figure class="img-frame m-0 aspect-[4/3]" reveal [revealDelay]="120">
+        <img
+          src="/images/mission.webp"
+          alt="Somniation team planning a project around a whiteboard"
+          scrollZoom
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="absolute bottom-4 left-4 rounded-md border border-border bg-surface/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+          <strong class="block text-[1.3rem] leading-tight tracking-tight text-primary">94%</strong>
+          <span class="text-[0.85rem] text-foreground-2">client retention rate</span>
+        </figcaption>
+      </figure>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="card grid gap-[0.1rem] p-[1.4rem]">
+
+    <div class="mt-[clamp(2rem,5vw,3rem)] grid gap-4 sm:grid-cols-3">
+      <div class="card grid gap-[0.1rem] p-[1.4rem]" reveal tilt>
         <strong class="text-2xl tracking-tight text-primary">60+</strong>
         <span class="text-[0.92rem] text-foreground-2">specialists on staff</span>
       </div>
-      <div class="card grid gap-[0.1rem] p-[1.4rem]">
+      <div class="card grid gap-[0.1rem] p-[1.4rem]" reveal [revealDelay]="100" tilt>
         <strong class="text-2xl tracking-tight text-primary">3</strong>
         <span class="text-[0.92rem] text-foreground-2">continents served</span>
       </div>
-      <div class="card grid gap-[0.1rem] p-[1.4rem]">
-        <strong class="text-2xl tracking-tight text-primary">94%</strong>
-        <span class="text-[0.92rem] text-foreground-2">client retention rate</span>
-      </div>
-      <div class="card grid gap-[0.1rem] p-[1.4rem]">
+      <div class="card grid gap-[0.1rem] p-[1.4rem]" reveal [revealDelay]="200" tilt>
         <strong class="text-2xl tracking-tight text-primary">ISO 27001</strong>
         <span class="text-[0.92rem] text-foreground-2">certified operations</span>
       </div>
@@ -51,14 +68,14 @@
 
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">Our values</span>
       <h2 class="section-title">What we won't compromise on</h2>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2">
-      @for (value of values; track value.title) {
-        <div class="card card-hover">
+      @for (value of values; track value.title; let i = $index) {
+        <div class="card card-hover" reveal [revealDelay]="(i % 2) * 100" tilt>
           <span class="icon-badge">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + value.icon" /></svg>
           </span>
@@ -70,16 +87,34 @@
   </div>
 </section>
 
+<!-- Parallax quote band -->
+<section class="relative isolate overflow-hidden py-[clamp(4.5rem,11vw,7rem)] text-center text-white">
+  <div class="media-hero-layer" aria-hidden="true">
+    <img src="/images/support.webp" alt="" parallax [parallaxSpeed]="0.24" loading="lazy" decoding="async" />
+    <div class="absolute inset-0 bg-[rgb(5_8_22/0.74)]"></div>
+  </div>
+  <div class="container" reveal>
+    <span class="eyebrow eyebrow-on-media">Our promise</span>
+    <p class="mx-auto mb-3 max-w-[24ch] text-[clamp(1.6rem,4vw,2.4rem)] leading-tight font-extrabold tracking-tight">
+      Dream it. <span class="text-gradient">Run it.</span>
+    </p>
+    <p class="mx-auto mb-0 max-w-[52ch] text-[1.05rem] text-indigo-100/85">
+      We chase ambitious ideas with you — then turn them into monitored,
+      secured, production-grade systems that just keep running.
+    </p>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">Leadership</span>
       <h2 class="section-title">The people behind the promise</h2>
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      @for (member of team; track member.name) {
-        <div class="card card-hover text-center">
+      @for (member of team; track member.name; let i = $index) {
+        <div class="card card-hover text-center" reveal [revealDelay]="i * 90" tilt>
           <span class="mb-4 inline-flex size-[72px] items-center justify-center rounded-full bg-(image:--gradient) text-[1.4rem] font-bold text-white" aria-hidden="true">{{ member.initials }}</span>
           <h3 class="mb-[0.2rem] text-[1.08rem]">{{ member.name }}</h3>
           <span class="block text-[0.88rem] font-semibold text-primary">{{ member.role }}</span>
@@ -92,14 +127,14 @@
 
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">Our story</span>
       <h2 class="section-title">A decade of keeping the lights on</h2>
     </div>
 
     <ol class="relative mx-auto max-w-[720px] before:absolute before:top-2 before:bottom-2 before:left-11 before:w-0.5 before:bg-border before:content-[''] max-sm:before:hidden">
-      @for (milestone of milestones; track milestone.year) {
-        <li class="relative flex gap-8 pb-9 last:pb-0 max-sm:flex-col max-sm:gap-[0.6rem]">
+      @for (milestone of milestones; track milestone.year; let i = $index) {
+        <li class="relative flex gap-8 pb-9 last:pb-0 max-sm:flex-col max-sm:gap-[0.6rem]" reveal [revealDelay]="i * 60">
           <span class="relative z-1 h-fit w-[88px] flex-none rounded-full bg-primary-soft py-1 text-center font-bold text-primary outline-[6px] outline-surface-2 max-sm:outline-none">{{ milestone.year }}</span>
           <div>
             <h3 class="mb-[0.3rem] text-[1.08rem]">{{ milestone.title }}</h3>

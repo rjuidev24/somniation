@@ -7,6 +7,8 @@ import {
   required,
   submit,
 } from '@angular/forms/signals';
+import { RevealDirective } from '../../core/reveal.directive';
+import { TiltDirective } from '../../core/tilt.directive';
 import { CONTACT_INFO, FAQS, SERVICES } from '../../core/data';
 
 const EMPTY_MODEL = {
@@ -19,7 +21,7 @@ const EMPTY_MODEL = {
 
 @Component({
   selector: 'app-contact',
-  imports: [FormField],
+  imports: [FormField, RevealDirective, TiltDirective],
   templateUrl: './contact.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

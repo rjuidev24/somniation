@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CountUpDirective } from '../../core/count-up.directive';
+import { ParallaxDirective } from '../../core/parallax.directive';
+import { RevealDirective } from '../../core/reveal.directive';
+import { ScrollZoomDirective } from '../../core/scroll-zoom.directive';
+import { TiltDirective } from '../../core/tilt.directive';
 import {
   PROCESS,
   SERVICES,
@@ -11,7 +15,14 @@ import {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CountUpDirective],
+  imports: [
+    RouterLink,
+    CountUpDirective,
+    ParallaxDirective,
+    RevealDirective,
+    ScrollZoomDirective,
+    TiltDirective,
+  ],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

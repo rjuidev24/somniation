@@ -1,34 +1,45 @@
 <!-- Hero -->
-<section class="relative overflow-hidden bg-background bg-[radial-gradient(60%_80%_at_85%_10%,var(--primary-soft)_0%,transparent_60%)] py-[clamp(3.5rem,9vw,6.5rem)]">
+<section class="relative isolate overflow-hidden py-[clamp(4rem,10vw,7.5rem)] text-white">
+  <div class="media-hero-layer" aria-hidden="true">
+    <img
+      src="/images/hero-globe.webp"
+      alt=""
+      parallax
+      [parallaxSpeed]="0.18"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-[linear-gradient(100deg,rgb(5_8_22/0.94)_15%,rgb(5_8_22/0.78)_55%,rgb(5_8_22/0.4))]"></div>
+  </div>
+
   <div class="container grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
     <div>
-      <span class="eyebrow">IT services &amp; technology consulting</span>
-      <h1 class="mb-4 text-[clamp(2.1rem,5.5vw,3.4rem)]">
+      <span class="eyebrow eyebrow-on-media animate-fade-up">IT services &amp; technology consulting</span>
+      <h1 class="animate-fade-up mb-4 text-[clamp(2.1rem,5.5vw,3.4rem)] [animation-delay:100ms]">
         IT that works, so you can
         <span class="text-gradient">build what you dream</span>
       </h1>
-      <p class="mb-7 max-w-[52ch] text-[1.12rem] text-foreground-2">
+      <p class="animate-fade-up mb-7 max-w-[52ch] text-[1.12rem] text-indigo-100/85 [animation-delay:200ms]">
         Somniation keeps your business running, secure and ready for what's
         next — with managed support, cloud, cybersecurity and custom software
         delivered by senior engineers who pick up the phone.
       </p>
-      <div class="flex flex-wrap gap-[0.85rem]">
+      <div class="animate-fade-up flex flex-wrap gap-[0.85rem] [animation-delay:300ms]">
         <a routerLink="/contact" class="btn btn-primary btn-lg">Get a free consultation</a>
-        <a routerLink="/services" class="btn btn-outline btn-lg">
+        <a routerLink="/services" class="btn btn-lg border-white/40 text-white hover:border-white hover:text-white">
           Explore services
           <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
         </a>
       </div>
-      <ul class="mt-7 flex flex-wrap gap-5 text-[0.93rem] font-medium text-foreground-2">
-        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> 24/7 monitoring</li>
-        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> 15-min critical SLA</li>
-        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> ISO 27001 certified</li>
+      <ul class="animate-fade-up mt-7 flex flex-wrap gap-5 text-[0.93rem] font-medium text-indigo-100/80 [animation-delay:400ms]">
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-cyan-300" aria-hidden="true"><use href="#i-check" /></svg> 24/7 monitoring</li>
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-cyan-300" aria-hidden="true"><use href="#i-check" /></svg> 15-min critical SLA</li>
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-cyan-300" aria-hidden="true"><use href="#i-check" /></svg> ISO 27001 certified</li>
       </ul>
     </div>
 
     <div class="relative flex min-h-[260px] items-center justify-center lg:min-h-[320px]" aria-hidden="true">
-      <div class="absolute inset-x-[5%] inset-y-[10%] rounded-full bg-(image:--gradient) opacity-20 blur-[48px]"></div>
-      <div class="animate-hero-float relative grid w-full max-w-[320px] gap-[0.85rem] rounded-lg border border-border bg-surface p-6 shadow-lg">
+      <div class="absolute inset-x-[5%] inset-y-[10%] rounded-full bg-(image:--gradient) opacity-25 blur-[48px]"></div>
+      <div class="animate-hero-float relative grid w-full max-w-[320px] gap-[0.85rem] rounded-lg border border-border bg-surface p-6 text-foreground shadow-lg">
         <div class="flex items-center gap-[0.6rem] text-[0.92rem] font-medium text-foreground-2">
           <span class="size-[9px] flex-none rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/0.15)]"></span>
           <span>All systems operational</span>
@@ -55,7 +66,7 @@
 <!-- Services overview -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">What we do</span>
       <h2 class="section-title">Everything your business needs from IT</h2>
       <p class="section-lead">
@@ -65,8 +76,15 @@
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (service of services; track service.slug) {
-        <a class="card card-hover group flex flex-col text-foreground hover:text-foreground" routerLink="/services" [fragment]="service.slug">
+      @for (service of services; track service.slug; let i = $index) {
+        <a
+          class="card card-hover group flex flex-col text-foreground hover:text-foreground"
+          routerLink="/services"
+          [fragment]="service.slug"
+          reveal
+          [revealDelay]="(i % 3) * 90"
+          tilt
+        >
           <span class="icon-badge">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + service.icon" /></svg>
           </span>
@@ -85,8 +103,8 @@
 <!-- Stats -->
 <section class="bg-(image:--gradient) py-12 text-white" aria-label="Company statistics">
   <div class="container grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
-    @for (stat of stats; track stat.label) {
-      <div class="grid gap-[0.15rem]">
+    @for (stat of stats; track stat.label; let i = $index) {
+      <div class="grid gap-[0.15rem]" reveal [revealDelay]="i * 80">
         <span
           class="text-[clamp(2rem,4.5vw,2.8rem)] font-extrabold tracking-tight tabular-nums"
           [countUp]="stat.value"
@@ -102,7 +120,7 @@
 <!-- Why choose us -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">Why Somniation</span>
       <h2 class="section-title">The IT partner teams actually like</h2>
       <p class="section-lead">
@@ -111,18 +129,34 @@
       </p>
     </div>
 
-    <div class="grid gap-8 sm:grid-cols-2 sm:gap-x-10">
-      @for (item of differentiators; track item.title) {
-        <div class="flex items-start gap-5">
-          <span class="icon-badge mb-0 flex-none">
-            <svg aria-hidden="true"><use [attr.href]="'#i-' + item.icon" /></svg>
-          </span>
-          <div>
-            <h3 class="mb-[0.35rem] text-[1.1rem]">{{ item.title }}</h3>
-            <p class="m-0 text-[0.97rem] text-foreground-2">{{ item.text }}</p>
+    <div class="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+      <figure class="img-frame m-0 aspect-[4/3]" reveal>
+        <img
+          src="/images/team-collab.webp"
+          alt="Somniation engineers collaborating around a shared table"
+          scrollZoom
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="absolute bottom-4 left-4 rounded-md border border-border bg-surface/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+          <strong class="block text-[1.3rem] leading-tight tracking-tight text-primary">60+</strong>
+          <span class="text-[0.85rem] text-foreground-2">senior specialists on staff</span>
+        </figcaption>
+      </figure>
+
+      <div class="grid gap-8 sm:grid-cols-2 sm:gap-x-10">
+        @for (item of differentiators; track item.title; let i = $index) {
+          <div class="flex items-start gap-5" reveal [revealDelay]="i * 90">
+            <span class="icon-badge mb-0 flex-none">
+              <svg aria-hidden="true"><use [attr.href]="'#i-' + item.icon" /></svg>
+            </span>
+            <div>
+              <h3 class="mb-[0.35rem] text-[1.1rem]">{{ item.title }}</h3>
+              <p class="m-0 text-[0.97rem] text-foreground-2">{{ item.text }}</p>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -130,14 +164,19 @@
 <!-- Process -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">How we work</span>
       <h2 class="section-title">A simple process, visible every step</h2>
     </div>
 
     <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       @for (step of process; track step.title; let i = $index) {
-        <li class="relative rounded-lg border border-border bg-surface px-6 pt-7 pb-6">
+        <li
+          class="relative rounded-lg border border-border bg-surface px-6 pt-7 pb-6 shadow-sm"
+          reveal
+          [revealDelay]="i * 100"
+          tilt
+        >
           <span class="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-(image:--gradient) font-bold text-white">{{ i + 1 }}</span>
           <h3 class="mb-[0.4rem] text-[1.08rem]">{{ step.title }}</h3>
           <p class="m-0 text-[0.94rem] text-foreground-2">{{ step.text }}</p>
@@ -150,14 +189,14 @@
 <!-- Testimonials -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">Client stories</span>
       <h2 class="section-title">Trusted by teams who can't afford downtime</h2>
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (t of testimonials; track t.name) {
-        <figure class="card m-0 flex flex-col">
+      @for (t of testimonials; track t.name; let i = $index) {
+        <figure class="card card-hover m-0 flex flex-col" reveal [revealDelay]="i * 100" tilt>
           <div class="mb-4 flex gap-[2px] text-amber-500" aria-label="5 out of 5 stars">
             @for (star of [1, 2, 3, 4, 5]; track star) {
               <svg class="icon size-4 fill-current" aria-hidden="true"><use href="#i-star" /></svg>
@@ -179,7 +218,7 @@
 
 <!-- Technology partners -->
 <section class="border-y border-border bg-surface-2 py-11" aria-label="Technology partners">
-  <div class="container">
+  <div class="container" reveal>
     <p class="mb-6 text-center text-[0.9rem] tracking-[0.1em] text-muted uppercase">Certified partners across the platforms you rely on</p>
     <ul class="flex flex-wrap justify-center gap-x-12 gap-y-5">
       @for (partner of partners; track partner) {
@@ -192,7 +231,10 @@
 <!-- CTA banner -->
 <section class="section">
   <div class="container">
-    <div class="flex flex-wrap items-center justify-between gap-8 rounded-lg bg-(image:--gradient) p-[clamp(2rem,5vw,3.25rem)] text-white shadow-lg">
+    <div
+      class="flex flex-wrap items-center justify-between gap-8 rounded-lg bg-(image:--gradient) p-[clamp(2rem,5vw,3.25rem)] text-white shadow-lg"
+      reveal
+    >
       <div>
         <h2 class="mb-2 text-[clamp(1.5rem,3.5vw,2rem)]">Ready to stop worrying about IT?</h2>
         <p class="m-0 max-w-[46ch] opacity-90">
