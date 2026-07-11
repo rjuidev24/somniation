@@ -30,20 +30,20 @@
         </div>
       } @else {
         <h2 class="mb-6 text-[1.4rem]">Send us a message</h2>
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <form (submit)="onSubmit(); $event.preventDefault()" novalidate>
           <div class="grid sm:grid-cols-2 sm:gap-x-5">
             <div class="mb-5 grid gap-[0.35rem]">
               <label for="name" class="text-[0.92rem] font-semibold">Full name *</label>
               <input
                 id="name"
                 type="text"
-                formControlName="name"
+                [formField]="form.name"
                 autocomplete="name"
                 class="form-input"
-                [class]="invalid('name') ? 'border-red-600!' : ''"
+                [class]="form.name().touched() && form.name().invalid() ? 'border-red-600!' : ''"
               />
-              @if (invalid('name')) {
-                <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please enter your name.</span>
+              @if (form.name().touched() && form.name().invalid()) {
+                <span class="text-[0.85rem] text-red-600 dark:text-red-400">{{ form.name().errors()[0].message }}</span>
               }
             </div>
             <div class="mb-5 grid gap-[0.35rem]">
@@ -51,13 +51,13 @@
               <input
                 id="email"
                 type="email"
-                formControlName="email"
+                [formField]="form.email"
                 autocomplete="email"
                 class="form-input"
-                [class]="invalid('email') ? 'border-red-600!' : ''"
+                [class]="form.email().touched() && form.email().invalid() ? 'border-red-600!' : ''"
               />
-              @if (invalid('email')) {
-                <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please enter a valid email address.</span>
+              @if (form.email().touched() && form.email().invalid()) {
+                <span class="text-[0.85rem] text-red-600 dark:text-red-400">{{ form.email().errors()[0].message }}</span>
               }
             </div>
           </div>
@@ -65,11 +65,11 @@
           <div class="grid sm:grid-cols-2 sm:gap-x-5">
             <div class="mb-5 grid gap-[0.35rem]">
               <label for="company" class="text-[0.92rem] font-semibold">Company</label>
-              <input id="company" type="text" formControlName="company" autocomplete="organization" class="form-input" />
+              <input id="company" type="text" [formField]="form.company" autocomplete="organization" class="form-input" />
             </div>
             <div class="mb-5 grid gap-[0.35rem]">
               <label for="service" class="text-[0.92rem] font-semibold">What do you need help with?</label>
-              <select id="service" formControlName="service" class="form-input">
+              <select id="service" [formField]="form.service" class="form-input">
                 <option value="">Select a service (optional)</option>
                 @for (service of services; track service.slug) {
                   <option [value]="service.slug">{{ service.title }}</option>
@@ -84,13 +84,13 @@
             <textarea
               id="message"
               rows="5"
-              formControlName="message"
+              [formField]="form.message"
               placeholder="Tell us a little about your environment and what you'd like to improve…"
               class="form-input min-h-[120px] resize-y"
-              [class]="invalid('message') ? 'border-red-600!' : ''"
+              [class]="form.message().touched() && form.message().invalid() ? 'border-red-600!' : ''"
             ></textarea>
-            @if (invalid('message')) {
-              <span class="text-[0.85rem] text-red-600 dark:text-red-400">Please tell us a bit more (at least 20 characters).</span>
+            @if (form.message().touched() && form.message().invalid()) {
+              <span class="text-[0.85rem] text-red-600 dark:text-red-400">{{ form.message().errors()[0].message }}</span>
             }
           </div>
 
