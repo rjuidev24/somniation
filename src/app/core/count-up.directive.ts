@@ -1,5 +1,6 @@
 import {
   Directive,
+  DestroyRef,
   ElementRef,
   inject,
   input,
@@ -20,6 +21,8 @@ export class CountUpDirective {
   readonly suffix = input('');
 
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private frame = 0;
 
   constructor() {
     afterNextRender(() => {
@@ -40,6 +43,10 @@ export class CountUpDirective {
         { threshold: 0.4 },
       );
       observer.observe(this.el.nativeElement);
+      this.destroyRef.onDestroy(() => {
+        observer.disconnect();
+        cancelAnimationFrame(this.frame);
+      });
     });
   }
 
@@ -53,10 +60,10 @@ export class CountUpDirective {
       const eased = 1 - Math.pow(1 - progress, 3);
       this.render(target * eased);
       if (progress < 1) {
-        requestAnimationFrame(tick);
+        this.frame = requestAnimationFrame(tick);
       }
     };
-    requestAnimationFrame(tick);
+    this.frame = requestAnimationFrame(tick);
   }
 
   private render(value: number): void {

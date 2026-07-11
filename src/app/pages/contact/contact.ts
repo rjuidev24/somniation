@@ -1,57 +1,67 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
-  FormBuilder,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+  email,
+  form,
+  FormField,
+  minLength,
+  required,
+  submit,
+} from '@angular/forms/signals';
 import { CONTACT_INFO, FAQS, SERVICES } from '../../core/data';
+
+const EMPTY_MODEL = {
+  name: '',
+  email: '',
+  company: '',
+  service: '',
+  message: '',
+};
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule],
+  imports: [FormField],
   templateUrl: './contact.html',
-  styleUrl: './contact.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Contact {
-  private readonly fb = inject(FormBuilder);
-
   protected readonly services = SERVICES;
   protected readonly contact = CONTACT_INFO;
   protected readonly faqs = FAQS;
 
-  protected readonly submitted = signal(false);
   protected readonly sent = signal(false);
   protected readonly openFaq = signal<number | null>(null);
 
-  protected readonly form = this.fb.nonNullable.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    company: [''],
-    service: [''],
-    message: ['', [Validators.required, Validators.minLength(20)]],
+  protected readonly model = signal({ ...EMPTY_MODEL });
+
+  protected readonly form = form(this.model, (s) => {
+    required(s.name, { message: 'Please enter your name.' });
+    minLength(s.name, 2, { message: 'Please enter your name.' });
+    required(s.email, { message: 'Please enter a valid email address.' });
+    email(s.email, { message: 'Please enter a valid email address.' });
+    required(s.message, {
+      message: 'Please tell us a bit more (at least 20 characters).',
+    });
+    minLength(s.message, 20, {
+      message: 'Please tell us a bit more (at least 20 characters).',
+    });
   });
 
-  protected submit(): void {
-    this.submitted.set(true);
-    if (this.form.invalid) {
-      return;
-    }
-    // There is no backend yet: acknowledge the message locally.
-    this.sent.set(true);
+  protected onSubmit(): void {
+    // submit() marks every field as touched and only runs the
+    // action when the form is valid.
+    submit(this.form, async () => {
+      // There is no backend yet: acknowledge the message locally.
+      this.sent.set(true);
+    });
   }
 
   protected reset(): void {
-    this.form.reset();
-    this.submitted.set(false);
+    this.model.set({ ...EMPTY_MODEL });
+    this.form().reset();
     this.sent.set(false);
   }
 
   protected toggleFaq(index: number): void {
     this.openFaq.update((open) => (open === index ? null : index));
-  }
-
-  protected invalid(controlName: string): boolean {
-    const control = this.form.get(controlName);
-    return !!control && control.invalid && (control.touched || this.submitted());
   }
 }

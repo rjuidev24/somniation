@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CountUpDirective } from '../../core/count-up.directive';
 import {
@@ -13,7 +13,7 @@ import {
   selector: 'app-home',
   imports: [RouterLink, CountUpDirective],
   templateUrl: './home.html',
-  styleUrl: './home.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
   protected readonly services = SERVICES;

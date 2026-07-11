@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { DOCUMENT, effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 export type Theme = 'light' | 'dark';
@@ -14,6 +14,7 @@ const STORAGE_KEY = 'somniation-theme';
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly document = inject(DOCUMENT);
 
   readonly theme = signal<Theme>('light');
 
@@ -33,7 +34,7 @@ export class ThemeService {
     }
 
     effect(() => {
-      document.documentElement.setAttribute('data-theme', this.theme());
+      this.document.documentElement.setAttribute('data-theme', this.theme());
     });
   }
 

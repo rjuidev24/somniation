@@ -296,8 +296,8 @@ export const FAQS: Faq[] = [
 ];
 
 export const CONTACT_INFO = {
-  address: '400 Dreamline Avenue, Suite 210, Austin, TX 78701',
-  phone: '+1 (512) 555-0184',
+  address: '4505 Citabria Dr, McKinney, TX 75072',
+  phone: '+1 (402) 738-0060',
   email: 'hello@somniation.com',
   hours: 'Mon–Fri, 7:00am – 7:00pm CT · 24/7 for critical incidents',
 };

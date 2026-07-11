@@ -1,47 +1,47 @@
 <!-- Hero -->
-<section class="hero">
-  <div class="container hero__inner">
-    <div class="hero__copy">
+<section class="relative overflow-hidden bg-background bg-[radial-gradient(60%_80%_at_85%_10%,var(--primary-soft)_0%,transparent_60%)] py-[clamp(3.5rem,9vw,6.5rem)]">
+  <div class="container grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
+    <div>
       <span class="eyebrow">IT services &amp; technology consulting</span>
-      <h1 class="hero__title">
+      <h1 class="mb-4 text-[clamp(2.1rem,5.5vw,3.4rem)]">
         IT that works, so you can
         <span class="text-gradient">build what you dream</span>
       </h1>
-      <p class="hero__lead">
+      <p class="mb-7 max-w-[52ch] text-[1.12rem] text-foreground-2">
         Somniation keeps your business running, secure and ready for what's
         next — with managed support, cloud, cybersecurity and custom software
         delivered by senior engineers who pick up the phone.
       </p>
-      <div class="hero__actions">
-        <a routerLink="/contact" class="btn btn--primary btn--lg">Get a free consultation</a>
-        <a routerLink="/services" class="btn btn--outline btn--lg">
+      <div class="flex flex-wrap gap-[0.85rem]">
+        <a routerLink="/contact" class="btn btn-primary btn-lg">Get a free consultation</a>
+        <a routerLink="/services" class="btn btn-outline btn-lg">
           Explore services
           <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
         </a>
       </div>
-      <ul class="hero__points">
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> 24/7 monitoring</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> 15-min critical SLA</li>
-        <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> ISO 27001 certified</li>
+      <ul class="mt-7 flex flex-wrap gap-5 text-[0.93rem] font-medium text-foreground-2">
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> 24/7 monitoring</li>
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> 15-min critical SLA</li>
+        <li class="inline-flex items-center gap-[0.4rem]"><svg class="icon size-4 text-accent" aria-hidden="true"><use href="#i-check" /></svg> ISO 27001 certified</li>
       </ul>
     </div>
 
-    <div class="hero__art" aria-hidden="true">
-      <div class="hero__orb"></div>
-      <div class="hero__panel">
-        <div class="hero__panel-row">
-          <span class="hero__dot hero__dot--ok"></span>
+    <div class="relative flex min-h-[260px] items-center justify-center lg:min-h-[320px]" aria-hidden="true">
+      <div class="absolute inset-x-[5%] inset-y-[10%] rounded-full bg-(image:--gradient) opacity-20 blur-[48px]"></div>
+      <div class="animate-hero-float relative grid w-full max-w-[320px] gap-[0.85rem] rounded-lg border border-border bg-surface p-6 shadow-lg">
+        <div class="flex items-center gap-[0.6rem] text-[0.92rem] font-medium text-foreground-2">
+          <span class="size-[9px] flex-none rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/0.15)]"></span>
           <span>All systems operational</span>
         </div>
-        <div class="hero__panel-row">
-          <span class="hero__dot hero__dot--ok"></span>
+        <div class="flex items-center gap-[0.6rem] text-[0.92rem] font-medium text-foreground-2">
+          <span class="size-[9px] flex-none rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/0.15)]"></span>
           <span>Backups verified · 02:00</span>
         </div>
-        <div class="hero__panel-row">
-          <span class="hero__dot hero__dot--ok"></span>
+        <div class="flex items-center gap-[0.6rem] text-[0.92rem] font-medium text-foreground-2">
+          <span class="size-[9px] flex-none rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/0.15)]"></span>
           <span>0 unresolved incidents</span>
         </div>
-        <div class="hero__panel-bars">
+        <div class="mt-2 flex h-[84px] items-end gap-2 border-t border-border pt-[0.85rem] *:flex-1 *:rounded-t-[4px] *:bg-(image:--gradient) *:opacity-85">
           <span style="height: 40%"></span><span style="height: 65%"></span>
           <span style="height: 50%"></span><span style="height: 80%"></span>
           <span style="height: 60%"></span><span style="height: 92%"></span>
@@ -55,7 +55,7 @@
 <!-- Services overview -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head--center">
+    <div class="section-head section-head-center">
       <span class="eyebrow">What we do</span>
       <h2 class="section-title">Everything your business needs from IT</h2>
       <p class="section-lead">
@@ -64,17 +64,17 @@
       </p>
     </div>
 
-    <div class="services-grid">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       @for (service of services; track service.slug) {
-        <a class="card card--hover service-card" routerLink="/services" [fragment]="service.slug">
+        <a class="card card-hover group flex flex-col text-foreground hover:text-foreground" routerLink="/services" [fragment]="service.slug">
           <span class="icon-badge">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + service.icon" /></svg>
           </span>
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.summary }}</p>
-          <span class="service-card__more">
+          <h3 class="text-[1.15rem]">{{ service.title }}</h3>
+          <p class="mb-5 text-[0.97rem] text-foreground-2">{{ service.summary }}</p>
+          <span class="mt-auto inline-flex items-center gap-[0.4rem] text-[0.95rem] font-semibold text-primary">
             Learn more
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+            <svg class="icon size-4 transition-transform group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow-right" /></svg>
           </span>
         </a>
       }
@@ -83,17 +83,17 @@
 </section>
 
 <!-- Stats -->
-<section class="stats" aria-label="Company statistics">
-  <div class="container stats__grid">
+<section class="bg-(image:--gradient) py-12 text-white" aria-label="Company statistics">
+  <div class="container grid grid-cols-2 gap-8 text-center lg:grid-cols-4">
     @for (stat of stats; track stat.label) {
-      <div class="stats__item">
+      <div class="grid gap-[0.15rem]">
         <span
-          class="stats__value"
+          class="text-[clamp(2rem,4.5vw,2.8rem)] font-extrabold tracking-tight tabular-nums"
           [countUp]="stat.value"
           [decimals]="stat.decimals ?? 0"
           [suffix]="stat.suffix"
         >{{ stat.value }}{{ stat.suffix }}</span>
-        <span class="stats__label">{{ stat.label }}</span>
+        <span class="text-[0.95rem] opacity-90">{{ stat.label }}</span>
       </div>
     }
   </div>
@@ -102,7 +102,7 @@
 <!-- Why choose us -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head--center">
+    <div class="section-head section-head-center">
       <span class="eyebrow">Why Somniation</span>
       <h2 class="section-title">The IT partner teams actually like</h2>
       <p class="section-lead">
@@ -111,15 +111,15 @@
       </p>
     </div>
 
-    <div class="why-grid">
+    <div class="grid gap-8 sm:grid-cols-2 sm:gap-x-10">
       @for (item of differentiators; track item.title) {
-        <div class="why-item">
-          <span class="icon-badge">
+        <div class="flex items-start gap-5">
+          <span class="icon-badge mb-0 flex-none">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + item.icon" /></svg>
           </span>
           <div>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.text }}</p>
+            <h3 class="mb-[0.35rem] text-[1.1rem]">{{ item.title }}</h3>
+            <p class="m-0 text-[0.97rem] text-foreground-2">{{ item.text }}</p>
           </div>
         </div>
       }
@@ -128,19 +128,19 @@
 </section>
 
 <!-- Process -->
-<section class="section section--alt">
+<section class="section section-alt">
   <div class="container">
-    <div class="section-head section-head--center">
+    <div class="section-head section-head-center">
       <span class="eyebrow">How we work</span>
       <h2 class="section-title">A simple process, visible every step</h2>
     </div>
 
-    <ol class="process">
+    <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       @for (step of process; track step.title; let i = $index) {
-        <li class="process__step">
-          <span class="process__num">{{ i + 1 }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.text }}</p>
+        <li class="relative rounded-lg border border-border bg-surface px-6 pt-7 pb-6">
+          <span class="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-(image:--gradient) font-bold text-white">{{ i + 1 }}</span>
+          <h3 class="mb-[0.4rem] text-[1.08rem]">{{ step.title }}</h3>
+          <p class="m-0 text-[0.94rem] text-foreground-2">{{ step.text }}</p>
         </li>
       }
     </ol>
@@ -150,24 +150,24 @@
 <!-- Testimonials -->
 <section class="section">
   <div class="container">
-    <div class="section-head section-head--center">
+    <div class="section-head section-head-center">
       <span class="eyebrow">Client stories</span>
       <h2 class="section-title">Trusted by teams who can't afford downtime</h2>
     </div>
 
-    <div class="testimonials">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       @for (t of testimonials; track t.name) {
-        <figure class="card testimonial">
-          <div class="testimonial__stars" aria-label="5 out of 5 stars">
+        <figure class="card m-0 flex flex-col">
+          <div class="mb-4 flex gap-[2px] text-amber-500" aria-label="5 out of 5 stars">
             @for (star of [1, 2, 3, 4, 5]; track star) {
-              <svg class="icon" aria-hidden="true"><use href="#i-star" /></svg>
+              <svg class="icon size-4 fill-current" aria-hidden="true"><use href="#i-star" /></svg>
             }
           </div>
-          <blockquote>“{{ t.quote }}”</blockquote>
-          <figcaption>
-            <span class="testimonial__avatar" aria-hidden="true">{{ t.name.charAt(0) }}</span>
+          <blockquote class="mb-6 leading-[1.65] text-foreground">“{{ t.quote }}”</blockquote>
+          <figcaption class="mt-auto flex items-center gap-[0.85rem] text-[0.92rem] text-foreground-2">
+            <span class="inline-flex size-11 flex-none items-center justify-center rounded-full bg-(image:--gradient) text-[1.1rem] font-bold text-white" aria-hidden="true">{{ t.name.charAt(0) }}</span>
             <span>
-              <strong>{{ t.name }}</strong><br />
+              <strong class="text-foreground">{{ t.name }}</strong><br />
               {{ t.role }}, {{ t.company }}
             </span>
           </figcaption>
@@ -178,12 +178,12 @@
 </section>
 
 <!-- Technology partners -->
-<section class="partners" aria-label="Technology partners">
+<section class="border-y border-border bg-surface-2 py-11" aria-label="Technology partners">
   <div class="container">
-    <p class="partners__label">Certified partners across the platforms you rely on</p>
-    <ul class="partners__list">
+    <p class="mb-6 text-center text-[0.9rem] tracking-[0.1em] text-muted uppercase">Certified partners across the platforms you rely on</p>
+    <ul class="flex flex-wrap justify-center gap-x-12 gap-y-5">
       @for (partner of partners; track partner) {
-        <li>{{ partner }}</li>
+        <li class="text-[1.15rem] font-bold tracking-[-0.01em] text-muted">{{ partner }}</li>
       }
     </ul>
   </div>
@@ -192,15 +192,15 @@
 <!-- CTA banner -->
 <section class="section">
   <div class="container">
-    <div class="cta">
+    <div class="flex flex-wrap items-center justify-between gap-8 rounded-lg bg-(image:--gradient) p-[clamp(2rem,5vw,3.25rem)] text-white shadow-lg">
       <div>
-        <h2>Ready to stop worrying about IT?</h2>
-        <p>
+        <h2 class="mb-2 text-[clamp(1.5rem,3.5vw,2rem)]">Ready to stop worrying about IT?</h2>
+        <p class="m-0 max-w-[46ch] opacity-90">
           Tell us where it hurts. You'll get a free assessment and a clear plan
           within a week — no strings attached.
         </p>
       </div>
-      <a routerLink="/contact" class="btn btn--lg cta__btn">
+      <a routerLink="/contact" class="btn btn-lg flex-none bg-white text-indigo-950 hover:bg-indigo-50 hover:text-indigo-950 hover:shadow-md">
         Talk to an engineer
         <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
       </a>

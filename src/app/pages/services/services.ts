@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SERVICES } from '../../core/data';
 
@@ -6,7 +6,7 @@ import { SERVICES } from '../../core/data';
   selector: 'app-services',
   imports: [RouterLink],
   templateUrl: './services.html',
-  styleUrl: './services.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Services {
   protected readonly services = SERVICES;

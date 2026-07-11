@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CONTACT_INFO, SERVICES } from '../../core/data';
 
@@ -6,7 +6,7 @@ import { CONTACT_INFO, SERVICES } from '../../core/data';
   selector: 'app-footer',
   imports: [RouterLink],
   templateUrl: './footer.html',
-  styleUrl: './footer.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
   protected readonly services = SERVICES;
