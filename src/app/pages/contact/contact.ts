@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import {
   email,
   form,
@@ -7,9 +7,10 @@ import {
   required,
   submit,
 } from '@angular/forms/signals';
+import { ContactInfoService } from '../../core/contact-info.service';
 import { RevealDirective } from '../../core/reveal.directive';
 import { TiltDirective } from '../../core/tilt.directive';
-import { CONTACT_INFO, FAQS, SERVICES } from '../../core/data';
+import { FAQS, SERVICES } from '../../core/data';
 
 const EMPTY_MODEL = {
   name: '',
@@ -27,7 +28,7 @@ const EMPTY_MODEL = {
 })
 export class Contact {
   protected readonly services = SERVICES;
-  protected readonly contact = CONTACT_INFO;
+  protected readonly contact = inject(ContactInfoService).info;
   protected readonly faqs = FAQS;
 
   protected readonly sent = signal(false);

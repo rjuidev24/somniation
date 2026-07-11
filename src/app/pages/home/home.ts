@@ -11,13 +11,7 @@ import { ParallaxDirective } from '../../core/parallax.directive';
 import { RevealDirective } from '../../core/reveal.directive';
 import { ScrollZoomDirective } from '../../core/scroll-zoom.directive';
 import { TiltDirective } from '../../core/tilt.directive';
-import {
-  PROCESS,
-  SERVICES,
-  STATS,
-  TECH_PARTNERS,
-  TESTIMONIALS,
-} from '../../core/data';
+import { PROCESS, SERVICES, STATS, TECH_PARTNERS } from '../../core/data';
 
 @Component({
   selector: 'app-home',
@@ -59,7 +53,6 @@ export class Home {
   protected readonly services = SERVICES;
   protected readonly stats = STATS;
   protected readonly process = PROCESS;
-  protected readonly testimonials = TESTIMONIALS;
   protected readonly partners = TECH_PARTNERS;
 
   protected readonly differentiators = [

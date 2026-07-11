@@ -193,36 +193,6 @@
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="section">
-  <div class="container">
-    <div class="section-head section-head-center" reveal>
-      <span class="eyebrow">Client stories</span>
-      <h2 class="section-title">Trusted by teams who can't afford downtime</h2>
-    </div>
-
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      @for (t of testimonials; track t.name; let i = $index) {
-        <figure class="card card-hover m-0 flex flex-col" reveal [revealDelay]="i * 100" tilt>
-          <div class="mb-4 flex gap-[2px] text-amber-500" aria-label="5 out of 5 stars">
-            @for (star of [1, 2, 3, 4, 5]; track star) {
-              <svg class="icon size-4 fill-current" aria-hidden="true"><use href="#i-star" /></svg>
-            }
-          </div>
-          <blockquote class="mb-6 leading-[1.65] text-foreground">“{{ t.quote }}”</blockquote>
-          <figcaption class="mt-auto flex items-center gap-[0.85rem] text-[0.92rem] text-foreground-2">
-            <span class="inline-flex size-11 flex-none items-center justify-center rounded-full bg-(image:--gradient) text-[1.1rem] font-bold text-white" aria-hidden="true">{{ t.name.charAt(0) }}</span>
-            <span>
-              <strong class="text-foreground">{{ t.name }}</strong><br />
-              {{ t.role }}, {{ t.company }}
-            </span>
-          </figcaption>
-        </figure>
-      }
-    </div>
-  </div>
-</section>
-
 <!-- Technology partners -->
 <section class="border-y border-border bg-surface-2 py-11" aria-label="Technology partners">
   <div class="container" reveal>
