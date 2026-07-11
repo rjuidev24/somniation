@@ -32,8 +32,8 @@ export class ContactInfoService {
         address: decode('MjcwNTcgWFQgLHllbm5pS2NNICxyRCBhaXJiYXRpQyA1MDU0'),
         phone: decode('MDYwMC04MzcgKTIwNCggMSs='),
         phoneHref: decode('MDYwMDgzNzIwNDErOmxldA=='),
-        email: decode('bW9jLm5vaXRhaW5tb3NAb2xsZWg='),
-        emailHref: decode('bW9jLm5vaXRhaW5tb3NAb2xsZWg6b3RsaWFt'),
+        email: decode('bW9jLm5vaXRhaW5tb3NAbmltZGE='),
+        emailHref: decode('bW9jLm5vaXRhaW5tb3NAbmltZGE6b3RsaWFt'),
         hours: 'Mon–Fri, 7:00am – 7:00pm CT · 24/7 for critical incidents',
       });
     });
