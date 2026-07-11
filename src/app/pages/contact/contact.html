@@ -13,7 +13,7 @@
 <section class="section">
   <div class="container grid items-start gap-8 lg:grid-cols-[1.5fr_1fr]">
     <!-- Form -->
-    <div class="card p-[clamp(1.5rem,4vw,2.5rem)]">
+    <div class="card p-[clamp(1.5rem,4vw,2.5rem)]" reveal>
       @if (sent()) {
         <div class="py-6 text-center" role="status">
           <span class="icon-badge">
@@ -104,28 +104,28 @@
 
     <!-- Info -->
     <aside class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-      <div class="card flex gap-4 p-[1.4rem]">
+      <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="80" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Visit us</h3>
           <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact.address }}</p>
         </div>
       </div>
-      <div class="card flex gap-4 p-[1.4rem]">
+      <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="160" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Call us</h3>
           <p class="m-0 text-[0.95rem] text-foreground-2"><a href="tel:+15125550184">{{ contact.phone }}</a></p>
         </div>
       </div>
-      <div class="card flex gap-4 p-[1.4rem]">
+      <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="240" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Email us</h3>
           <p class="m-0 text-[0.95rem] text-foreground-2"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
         </div>
       </div>
-      <div class="card flex gap-4 p-[1.4rem]">
+      <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="320" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-clock" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Hours</h3>
@@ -139,12 +139,12 @@
 <!-- FAQ -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head section-head-center">
+    <div class="section-head section-head-center" reveal>
       <span class="eyebrow">FAQ</span>
       <h2 class="section-title">Questions we hear a lot</h2>
     </div>
 
-    <div class="mx-auto grid max-w-[760px] gap-[0.85rem]">
+    <div class="mx-auto grid max-w-[760px] gap-[0.85rem]" reveal>
       @for (faq of faqs; track faq.question; let i = $index) {
         <div class="overflow-hidden rounded-md border border-border bg-surface">
           <h3 class="m-0 text-base">

@@ -6,6 +6,7 @@
 export interface Service {
   slug: string;
   icon: string;
+  image: string;
   title: string;
   summary: string;
   features: string[];
@@ -56,6 +57,7 @@ export interface ProcessStep {
 export const SERVICES: Service[] = [
   {
     slug: 'managed-it',
+    image: '/images/support.webp',
     icon: 'headset',
     title: 'Managed IT Support',
     summary:
@@ -69,6 +71,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'cloud',
+    image: '/images/datacenter.webp',
     icon: 'cloud',
     title: 'Cloud Solutions',
     summary:
@@ -82,6 +85,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'cybersecurity',
+    image: '/images/security.webp',
     icon: 'shield',
     title: 'Cybersecurity',
     summary:
@@ -95,6 +99,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'software',
+    image: '/images/code.webp',
     icon: 'code',
     title: 'Custom Software Development',
     summary:
@@ -108,6 +113,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'consulting',
+    image: '/images/meeting.webp',
     icon: 'compass',
     title: 'IT Consulting & Strategy',
     summary:
@@ -121,6 +127,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'data',
+    image: '/images/analytics.webp',
     icon: 'chart',
     title: 'Data & Analytics',
     summary:

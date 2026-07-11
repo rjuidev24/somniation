@@ -1,8 +1,8 @@
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow">Our services</span>
-    <h1 class="max-w-[24ch] text-[clamp(2rem,5vw,3rem)]">Six practices. One accountable partner.</h1>
-    <p class="mb-0 max-w-[58ch] text-[1.1rem] text-foreground-2">
+    <span class="eyebrow animate-fade-up">Our services</span>
+    <h1 class="animate-fade-up max-w-[24ch] text-[clamp(2rem,5vw,3rem)] [animation-delay:100ms]">Six practices. One accountable partner.</h1>
+    <p class="animate-fade-up mb-0 max-w-[58ch] text-[1.1rem] text-foreground-2 [animation-delay:200ms]">
       Every engagement is backed by SLAs, senior engineers and reporting you can
       read without a translator. Start with one service or hand us the whole stack.
     </p>
@@ -10,39 +10,48 @@
 </section>
 
 <section class="section">
-  <div class="container grid gap-[clamp(3rem,7vw,4.5rem)]">
+  <div class="container grid gap-[clamp(3.5rem,8vw,5.5rem)]">
     @for (service of services; track service.slug; let i = $index) {
       <article
-        class="grid scroll-mt-[calc(var(--header-h)+1.5rem)] items-center gap-[clamp(1.75rem,4vw,3rem)] md:grid-cols-[1.1fr_0.9fr]"
+        class="grid scroll-mt-[calc(var(--header-h)+1.5rem)] items-center gap-[clamp(1.75rem,4vw,3.5rem)] md:grid-cols-[1.05fr_0.95fr]"
         [id]="service.slug"
       >
-        <div [class]="i % 2 === 1 ? 'md:order-2' : ''">
+        <div [class]="i % 2 === 1 ? 'md:order-2' : ''" reveal>
           <span class="icon-badge">
             <svg aria-hidden="true"><use [attr.href]="'#i-' + service.icon" /></svg>
           </span>
           <h2 class="text-[clamp(1.4rem,3vw,1.8rem)]">{{ service.title }}</h2>
           <p class="mb-6 max-w-[52ch] text-foreground-2">{{ service.summary }}</p>
+          <ul class="mb-7 grid gap-[0.8rem] sm:grid-cols-2 sm:gap-x-6">
+            @for (feature of service.features; track feature) {
+              <li class="flex items-start gap-[0.6rem] text-[0.95rem] font-medium">
+                <svg class="icon mt-[0.2rem] size-[18px] text-accent" aria-hidden="true"><use href="#i-check" /></svg>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
           <a routerLink="/contact" class="btn btn-outline">
             Discuss this service
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
           </a>
         </div>
 
-        <ul class="card grid gap-[0.9rem]">
-          @for (feature of service.features; track feature) {
-            <li class="flex items-start gap-[0.7rem] font-medium">
-              <svg class="icon mt-[0.2rem] size-[19px] text-accent" aria-hidden="true"><use href="#i-check" /></svg>
-              <span>{{ feature }}</span>
-            </li>
-          }
-        </ul>
+        <figure class="img-frame m-0 aspect-[4/3]" reveal [revealDelay]="120">
+          <img
+            [src]="service.image"
+            [alt]="service.title"
+            scrollZoom
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
       </article>
     }
   </div>
 </section>
 
 <section class="section section-alt">
-  <div class="container text-center">
+  <div class="container text-center" reveal>
     <h2 class="text-[clamp(1.5rem,3.5vw,2rem)]">Not sure where to start?</h2>
     <p class="mx-auto mb-7 max-w-[56ch] text-foreground-2">
       Book a free 30-minute assessment. We'll map your environment, flag the risks
