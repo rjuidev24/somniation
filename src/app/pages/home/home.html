@@ -1,13 +1,20 @@
 <!-- Hero -->
 <section class="relative isolate overflow-hidden py-[clamp(4rem,10vw,7.5rem)] text-white">
   <div class="media-hero-layer" aria-hidden="true">
-    <img
-      src="/images/hero-globe.webp"
-      alt=""
+    <!-- Looping digital-lines backdrop (paused for reduced-motion users in Home) -->
+    <video
+      #heroVideo
+      src="/videos/hero-digital.mp4"
+      poster="/images/hero-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      tabindex="-1"
       parallax
       [parallaxSpeed]="0.18"
-      fetchpriority="high"
-    />
+    ></video>
     <div class="absolute inset-0 bg-[linear-gradient(100deg,rgb(5_8_22/0.94)_15%,rgb(5_8_22/0.78)_55%,rgb(5_8_22/0.4))]"></div>
   </div>
 

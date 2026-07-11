@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  afterNextRender,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CountUpDirective } from '../../core/count-up.directive';
 import { ParallaxDirective } from '../../core/parallax.directive';
@@ -27,6 +33,29 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
+  private readonly heroVideo = viewChild<ElementRef<HTMLVideoElement>>('heroVideo');
+
+  constructor() {
+    // Respect reduced motion: leave the poster frame instead of the loop.
+    // Otherwise nudge playback, since some browsers ignore autoplay on
+    // hydrated server-rendered markup.
+    afterNextRender(() => {
+      const video = this.heroVideo()?.nativeElement;
+      if (!video) {
+        return;
+      }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.pause();
+        video.removeAttribute('autoplay');
+      } else {
+        video.muted = true;
+        video.play().catch(() => {
+          // Autoplay denied — the poster frame remains, which is fine.
+        });
+      }
+    });
+  }
+
   protected readonly services = SERVICES;
   protected readonly stats = STATS;
   protected readonly process = PROCESS;
