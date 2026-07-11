@@ -278,7 +278,8 @@
     @apply absolute inset-0 -z-10 overflow-hidden;
   }
 
-  .media-hero-layer img {
+  .media-hero-layer img,
+  .media-hero-layer video {
     @apply absolute inset-x-0 -top-[12%] h-[124%] w-full object-cover;
   }
 
