@@ -30,4 +30,3 @@ npm test           # unit tests (vitest)
 npm run build      # production build → dist/somniation/browser
 ```
 
-Requires Node.js ≥ 22.22.3.
