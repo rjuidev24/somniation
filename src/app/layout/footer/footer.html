@@ -32,20 +32,23 @@
 
       <div>
         <h3 class="mb-4 text-[0.85rem] tracking-[0.1em] text-foreground uppercase">Get in touch</h3>
-        <ul class="grid gap-[0.55rem]">
-          <li class="flex items-start gap-[0.6rem]">
-            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
-            <span>{{ contact.address }}</span>
-          </li>
-          <li class="flex items-start gap-[0.6rem]">
-            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
-            <a href="tel:+15125550184" class="text-foreground-2 hover:text-primary">{{ contact.phone }}</a>
-          </li>
-          <li class="flex items-start gap-[0.6rem]">
-            <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
-            <a href="mailto:{{ contact.email }}" class="text-foreground-2 hover:text-primary">{{ contact.email }}</a>
-          </li>
-        </ul>
+        <!-- Decoded browser-side only; data-nosnippet keeps it out of search snippets -->
+        @if (contact(); as c) {
+          <ul class="grid gap-[0.55rem]" data-nosnippet>
+            <li class="flex items-start gap-[0.6rem]">
+              <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
+              <span>{{ c.address }}</span>
+            </li>
+            <li class="flex items-start gap-[0.6rem]">
+              <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
+              <a [href]="c.phoneHref" class="text-foreground-2 hover:text-primary">{{ c.phone }}</a>
+            </li>
+            <li class="flex items-start gap-[0.6rem]">
+              <svg class="icon mt-[0.2rem] size-[18px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
+              <a [href]="c.emailHref" class="text-foreground-2 hover:text-primary">{{ c.email }}</a>
+            </li>
+          </ul>
+        }
       </div>
     </div>
 

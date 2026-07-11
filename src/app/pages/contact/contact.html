@@ -20,9 +20,9 @@
             <svg aria-hidden="true"><use href="#i-check" /></svg>
           </span>
           <h2 class="mb-2 text-[1.4rem]">Message received!</h2>
-          <p class="mx-auto mb-6 max-w-[44ch] text-foreground-2">
+          <p class="mx-auto mb-6 max-w-[44ch] text-foreground-2" data-nosnippet>
             Thanks for reaching out — we'll get back to you within one business
-            day. For urgent issues, call us at {{ contact.phone }}.
+            day. For urgent issues, call us at {{ contact()?.phone }}.
           </p>
           <button type="button" class="btn btn-outline" (click)="reset()">
             Send another message
@@ -102,34 +102,43 @@
       }
     </div>
 
-    <!-- Info -->
-    <aside class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+    <!-- Info: details are decoded browser-side only (see ContactInfoService);
+         data-nosnippet keeps them out of search-result snippets -->
+    <aside class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1" data-nosnippet>
       <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="80" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-map-pin" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Visit us</h3>
-          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact.address }}</p>
+          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact()?.address }}</p>
         </div>
       </div>
       <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="160" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-phone" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Call us</h3>
-          <p class="m-0 text-[0.95rem] text-foreground-2"><a href="tel:+15125550184">{{ contact.phone }}</a></p>
+          <p class="m-0 text-[0.95rem] text-foreground-2">
+            @if (contact(); as c) {
+              <a [href]="c.phoneHref">{{ c.phone }}</a>
+            }
+          </p>
         </div>
       </div>
       <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="240" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-mail" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Email us</h3>
-          <p class="m-0 text-[0.95rem] text-foreground-2"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+          <p class="m-0 text-[0.95rem] text-foreground-2">
+            @if (contact(); as c) {
+              <a [href]="c.emailHref">{{ c.email }}</a>
+            }
+          </p>
         </div>
       </div>
       <div class="card card-hover flex gap-4 p-[1.4rem]" reveal [revealDelay]="320" tilt>
         <svg class="icon mt-[0.15rem] size-[22px] text-primary" aria-hidden="true"><use href="#i-clock" /></svg>
         <div>
           <h3 class="mb-[0.2rem] text-base">Hours</h3>
-          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact.hours }}</p>
+          <p class="m-0 text-[0.95rem] text-foreground-2">{{ contact()?.hours }}</p>
         </div>
       </div>
     </aside>

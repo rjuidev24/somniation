@@ -19,19 +19,6 @@ export interface Stat {
   label: string;
 }
 
-export interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-  company: string;
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  bio: string;
-}
-
 export interface Milestone {
   year: string;
   title: string;
@@ -148,53 +135,6 @@ export const STATS: Stat[] = [
   { value: 24, suffix: '/7', label: 'Support coverage' },
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      'Somniation migrated our entire platform to the cloud with zero downtime. Their team felt like an extension of ours from day one.',
-    name: 'Maya Lindqvist',
-    role: 'CTO',
-    company: 'Northwind Logistics',
-  },
-  {
-    quote:
-      'After their security overhaul we passed our SOC 2 audit on the first attempt. The peace of mind alone is worth every penny.',
-    name: 'Daniel Okafor',
-    role: 'VP of Engineering',
-    company: 'Brightline Health',
-  },
-  {
-    quote:
-      'Tickets that used to sit for days are now resolved in hours. Our staff finally trusts IT again — that changed how we work.',
-    name: 'Sofia Reyes',
-    role: 'Operations Director',
-    company: 'Atlas Retail Group',
-  },
-];
-
-export const TEAM: TeamMember[] = [
-  {
-    name: 'Elena Vasquez',
-    role: 'Chief Executive Officer',
-    bio: 'Founded Somniation after a decade leading infrastructure teams, convinced IT partners could be dreamers and operators at once.',
-  },
-  {
-    name: 'James Whitfield',
-    role: 'Chief Technology Officer',
-    bio: 'Cloud architect and former SRE lead. Owns our engineering standards and keeps 99.9% from being just a marketing number.',
-  },
-  {
-    name: 'Priya Raman',
-    role: 'Head of Cybersecurity',
-    bio: 'CISSP with a background in incident response. Runs our security practice and compliance programs.',
-  },
-  {
-    name: 'Marcus Chen',
-    role: 'Head of Client Success',
-    bio: 'Makes sure every engagement has a clear roadmap, honest reporting and a team that picks up the phone.',
-  },
-];
-
 export const MILESTONES: Milestone[] = [
   {
     year: '2014',
@@ -302,9 +242,6 @@ export const FAQS: Faq[] = [
   },
 ];
 
-export const CONTACT_INFO = {
-  address: '4505 Citabria Dr, McKinney, TX 75072',
-  phone: '+1 (402) 738-0060',
-  email: 'hello@somniation.com',
-  hours: 'Mon–Fri, 7:00am – 7:00pm CT · 24/7 for critical incidents',
-};
+// Contact details intentionally do not live here as plaintext: they are
+// obfuscated and decoded browser-side in ContactInfoService so crawlers
+// and harvesters never see them. Keep them out of this file.
